@@ -16,9 +16,29 @@ class Title(SQLModel, table=True):
 	
 	id: Optional[int] = Field(default=None, primary_key=True)
 	code: int 
-	quantity: int
+	quantity: str
 	price: float
-	person_id:str #para cintrolar os preço dos produtos que entram
+	person_id: int
+
+class Person(SQLModel, table=True):
+	id: Optional[int] = Field(default=None, primary_key=True)
+	name:str
+	doc:str
+	tipe_doc:str
+	adress: str
+	contact:str
+
+class User(SQLModel, table=True):
+
+	id: Optional[int] = Field(default=None, primary_key=True)
+	name:str
+	position:str #usuario, admin, gerente;
+	email:str
+	password:str
+
+
+
+
 
 
 
@@ -37,4 +57,12 @@ def add_title(id: int):
 		return order
 
 
+def add_title_default( code:str, quantity:str,price:str,person_id:int):
+	with Session(engine) as session:
+
+		title = Title(code=code,quantity=quantity,price=price,person_id=person_id)
+		session.add(title)
+		session.commit()
+		session.refresh(title)
+		return title
 

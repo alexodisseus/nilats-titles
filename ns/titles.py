@@ -37,10 +37,26 @@ def add():
     
     
     #data = False
+    """
     data = model.add_titles_default(usuario_id)
     
     if data:
         return redirect(url_for('titles.list'))
+    """
+
+    if request.method == 'POST':
+        code = request.form['code']
+        quantity = request.form['quantity']
+        price = request.form['price']
+        person_id = request.form['person_id']
+
+        
+        
+        
+        asd = model.add_title_default(code, quantity,price,person_id)
+        if asd:
+            return redirect(url_for('titles.list'))
+        
 
     return render_template('titles/add.html')
 
@@ -53,20 +69,13 @@ def view(id):
 
 
 
+@titles.route('/editar/<id>', methods = ['GET','POST'])
+def edit(id):
+
+    return render_template('titles/edit.html')
 
 
 
-@titles.route('/editar', methods = ['GET','POST'])
-def edit():
-
-    return "<h3>Legumes Selecionados</h3><p>editar</p>"
-
-
-
-@titles.route('/apagar', methods = ['GET','POST'])
-def delete():
-
-    return "<h3>Legumes Selecionados</h3><p>apagar</p>"
 
 
 

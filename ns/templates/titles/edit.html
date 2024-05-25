@@ -9,23 +9,28 @@
 {% endblock %}
 
 {% block content %}
-
-<div class="container">
-
-<h2 class="text-center mb-4">Formulário de Produto</h2>
-<form method="post">
-  <div class="form-group">
-    <label for="name">Nome:</label>
-    <input type="text" name="name" class="form-control" id="name" value="{{data.name}}" required>
-  </div>
-  <div class="form-group">
-    <label for="description">Descrição:</label>
-    <input type="text" name="description" class="form-control" id="description" value="{{data.description}}" required>
-  </div>
-  <button type="submit" class="btn btn-primary btn-block">Enviar</button>
-</form>
-</div>
-
+<div class="container mt-5">
+        <h1 class="mb-4">Formulário de Informações</h1>
+        <form>
+            <div class="form-group">
+                <label for="code">Código</label>
+                <input type="number" class="form-control" id="code" placeholder="Digite o código">
+            </div>
+            <div class="form-group">
+                <label for="quantity">Quantidade</label>
+                <input type="number" class="form-control" id="quantity" placeholder="Digite a quantidade">
+            </div>
+            <div class="form-group">
+                <label for="price">Preço</label>
+                <input type="number" step="0.01" class="form-control" id="price" placeholder="Digite o preço">
+            </div>
+            <div class="form-group">
+                <label for="person_id">ID da Pessoa</label>
+                <input type="text" class="form-control" id="person_id" placeholder="Digite o ID da pessoa">
+            </div>
+            <button type="submit" class="btn btn-primary">Enviar</button>
+        </form>
+    </div>
 {% endblock %}
 
 {% block scripts %}
@@ -33,3 +38,7 @@
   // Adicione seus scripts personalizados aqui
 </script>
 {% endblock %}
+
+
+
+
