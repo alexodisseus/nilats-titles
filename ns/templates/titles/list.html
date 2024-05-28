@@ -13,7 +13,7 @@
                     <th scope="col">Código</th>
                     <th scope="col">Quantidade</th>
                     <th scope="col">Preço</th>
-                    <th scope="col">ID da Pessoa</th>
+                    <th scope="col">Cotista</th>
                     <th scope="col">Ação</th>
                 </tr>
             </thead>
@@ -26,7 +26,7 @@
                             <td>{{x.code}}</td>
                             <td>{{x.quantity}}</td>
                             <td>{{x.price}}</td>
-                            <td>{{x.person_id}}</td>
+                            <td>{{x.name}}</td>
                             <td>
                                 <a href="{{url_for('titles.view', id=x.id)}}">
                                     <button class="btn btn-primary">

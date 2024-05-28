@@ -73,7 +73,12 @@ def add_title_default( code:str, quantity:str,price:str,person_id:int):
 
 def get_titles_default():
 	with Session(engine) as session:
-		query = select(Title) #.join(Question_exam)		
+		
+		query = select(Title.id, 
+			Title.code, 
+			Title.price, 
+			Person.name, 
+			Title.quantity).join(Person , Person.id == Title.person_id)		
 		data = session.exec(query).all()
 		
 		return data
