@@ -23,9 +23,9 @@ def index():
 def list():
     
 
-    
+    data = model.get_titles_default()
 
-    return render_template('titles/list.html')
+    return render_template('titles/list.html' , data=data)
 
 
 
@@ -63,8 +63,12 @@ def add():
 
 @titles.route('/ver/<id>', methods = ['GET','POST'])
 def view(id):
+
+
+
+    data=model.get_title_id(id)
     
-    return render_template('titles/view.html')
+    return render_template('titles/view.html' , data=data)
   
 
 

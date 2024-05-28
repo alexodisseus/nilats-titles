@@ -66,3 +66,44 @@ def add_title_default( code:str, quantity:str,price:str,person_id:int):
 		session.refresh(title)
 		return title
 
+def get_titles_default():
+	with Session(engine) as session:
+		query = select(Title) #.join(Question_exam)		
+		data = session.exec(query).all()
+		
+		return data
+
+def get_title_id(id:int):
+	with Session(engine) as session:
+		title = session.get(Title , id)
+		
+		return title
+
+		
+
+
+
+
+
+"""
+person def
+"""
+
+
+def get_person_default():
+	with Session(engine) as session:
+		query = select(Person) #.join(Question_exam)		
+		data = session.exec(query).all()
+		
+		return data
+
+
+
+def add_person_default( name:str, doc_number:str, doc:str  , adress:str , contact:str):
+	with Session(engine) as session:
+
+		person = Person(name=name, tipe_doc=doc, doc=doc_number, adress=adress , contact=contact)
+		session.add(person)
+		session.commit()
+		session.refresh(person)
+		return person

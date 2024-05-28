@@ -16,31 +16,31 @@ def index():
 
 
 
-
-
-
 @person.route('/listar', methods = ['GET','POST'])
 def list():
     
+    data = model.get_person_default()
 
-    
-
-    return render_template('person/list.html')
-
-
-
+    return render_template('person/list.html', data=data)
 
 
 @person.route('/adicionar', methods = ['GET','POST'])
 def add():
+    
+    
+    if request.method == 'POST':
+        name = request.form['name']
+        doc = request.form['doc']
+        doc_number = request.form['doc_number']
+        adress = request.form['adress']
+        contact = request.form['contact']
 
-    
-    
-    #data = False
-    data = model.add_person_default(usuario_id)
-    
-    if data:
-        return redirect(url_for('person.list'))
+        
+        asd = model.add_person_default(name ,doc, doc_number, adress , contact)
+        if asd:
+            return redirect(url_for('person.list'))
+        
+
 
     return render_template('person/add.html')
 

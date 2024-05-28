@@ -19,61 +19,37 @@
             </thead>
             <tbody>
                 <!-- Example Row -->
-                <tr>
-                    <td>1234</td>
-                    <td>10</td>
-                    <td>99.99</td>
-                    <td>ABC123</td>
-                    <td><button class="btn btn-primary">Ver</button></td>
-                </tr>
-                <!-- Add more rows as needed -->
+                {% if data:%}
+                    {%for x in data:%}
+                        <tr>
+                        
+                            <td>{{x.code}}</td>
+                            <td>{{x.quantity}}</td>
+                            <td>{{x.price}}</td>
+                            <td>{{x.person_id}}</td>
+                            <td>
+                                <a href="{{url_for('titles.view', id=x.id)}}">
+                                    <button class="btn btn-primary">
+                                        Ver
+                                    </button>
+                                    
+                                </a>
+                            </td>    
+                        </tr>
+                    {%endfor%}
+                {%else:%}
+                    <tr>
+                
+                
+                        <td>nao existem dados</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                
+                {%endif%}
+                
             </tbody>
         </table>
     </div>
 </body>
 {% endblock %}
-
-
-
-
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Informações</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
-    <div class="container mt-5">
-        <h1 class="mb-4">Informações</h1>
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th scope="col">Código</th>
-                    <th scope="col">Quantidade</th>
-                    <th scope="col">Preço</th>
-                    <th scope="col">ID da Pessoa</th>
-                    <th scope="col">Ação</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Example Row -->
-                <tr>
-                    <td>1234</td>
-                    <td>10</td>
-                    <td>99.99</td>
-                    <td>ABC123</td>
-                    <td><button class="btn btn-primary">Ver</button></td>
-                </tr>
-                <!-- Add more rows as needed -->
-            </tbody>
-        </table>
-    </div>
-    <!-- Bootstrap JS, Popper.js, and jQuery -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
-</html>

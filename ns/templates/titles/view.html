@@ -9,6 +9,7 @@
 
 
 {% block content %}
+
 <body>
     <div class="container mt-5">
         <div class="card">
@@ -16,11 +17,20 @@
                 <h1>Detalhes do Produto</h1>
             </div>
             <div class="card-body">
-                <h5 class="card-title">Código: <span id="product-code">1234</span></h5>
-                <p class="card-text"><strong>Quantidade:</strong> <span id="product-quantity">10</span></p>
-                <p class="card-text"><strong>Preço:</strong> R$ <span id="product-price">99.99</span></p>
-                <p class="card-text"><strong>ID da Pessoa:</strong> <span id="person-id">ABC123</span></p>
-                <a href="#" class="btn btn-primary">Voltar</a>
+                <h5 class="card-title">Código: <span id="product-code">{{data.code}}</span></h5>
+                <p class="card-text">
+                    <strong>Quantidade:
+                    </strong> 
+                    <span id="product-quantity">{{data.quantity}}</span></p>
+                <p class="card-text">
+                    <strong>Preço:</strong> R$ 
+                    <span id="product-price">{{data.price}}</span>
+                </p>
+                <p class="card-text">
+                    <strong>ID da Pessoa:</strong> 
+                    <span id="person-id">{{data.person_id}}</span>
+                </p>
+                <a href="{{url_for('titles.list')}}" class="btn btn-primary">Voltar</a>
             </div>
         </div>
     </div>
