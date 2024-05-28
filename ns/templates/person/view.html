@@ -4,19 +4,7 @@
 
 {% block styles %}
 <style>
-    .product-img {
-        width: 100%;
-        height: auto;
-        max-height: 400px;
-        object-fit: cover;
-    }
-    .product-info {
-        margin-top: 20px;
-    }
-    .price-history,
-    .sales-history {
-        margin-top: 30px;
-    }
+
 </style>
 {% endblock %}
 
@@ -24,112 +12,83 @@
 
 {% block content %}
 
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <img src="https://via.placeholder.com/800x400" alt="Imagem do Produto" class="product-img">
+<body>
+    <div class="container mt-5">
+        <div class="card">
+            <div class="card-header">
+                <h1>Detalhes do Usuário</h1>
             </div>
-        </div>
-        <div class="row product-info">
-            <div class="col-md-12">
-                <div class="d-flex justify-content-between align-items-center">
-            <div>
-              <h3 id="product-name">{{data.name}}</h3>
-            </div>
-            <a href="{{url_for('product.edit', id=data.id )}}" class="btn btn-outline-primary btn-sm">Editar</a>
-          </div>
+            <div class="card-body">
+                <h5 class="card-title">Nome: 
+                    <span id="user-name">{{data[0].name}}</span>
+                </h5>
+                <p class="card-text">
+                    <strong>Documento:</strong> 
+                    <span id="user-doc">{{data[0].doc}}</span>
+                </p>
+                <p class="card-text">
+                    <strong>Tipo de Documento:</strong> 
+                    <span id="user-type-doc">{{data[0].tipe_doc}}</span>
+                </p>
+                <p class="card-text">
+                    <strong>Endereço:</strong> 
+                    <span id="user-adress">{{data[0].adress}}</span>
+                </p>
+                <p class="card-text">
+                    <strong>Contato:</strong> 
+                    <span id="user-contact">{{data[0].contact}}</span></p>
+                <a href="{{url_for('person.list')}}" class="btn btn-primary">Voltar</a>
+                <hr>
+                <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Código</th>
+                    <th scope="col">Quantidade</th>
+                    <th scope="col">Preço</th>
+                    <th scope="col">ID da Pessoa</th>
+                    <th scope="col">Ação</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Example Row -->
+                {% if data[1]:%}
+                    {%for x in data[1]:%}
+                        <tr>
+                        
+                            <td>{{x.code}}</td>
+                            <td>{{x.quantity}}</td>
+                            <td>{{x.price}}</td>
+                            <td>{{x.person_id}}</td>
+                            <td>
+                                <a href="{{url_for('titles.view', id=x.id)}}">
+                                    <button class="btn btn-primary">
+                                        Ver
+                                    </button>
+                                    
+                                </a>
+                            </td>    
+                        </tr>
+                    {%endfor%}
+                {%else:%}
+                    <tr>
                 
-                <p id="product-description">{{data.description}}</p>
+                
+                        <td>nao existem dados</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                
+                {%endif%}
+                
+            </tbody>
+        </table>
+
             </div>
-        </div>
-        <div class="row price-history">
-            <div class="col-md-12">
-                <h2>Histórico de Preços de Entrada</h2>
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>Data</th>
-                            <th>Preço de Entrada</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>01/01/2024</td>
-                            <td>R$ 3,00</td>
-                        </tr>
-                        <tr>
-                            <td>02/01/2024</td>
-                            <td>R$ 3,20</td>
-                        </tr>
-                        <tr>
-                            <td>03/01/2024</td>
-                            <td>R$ 3,10</td>
-                        </tr>
-                        <!-- Adicione mais linhas conforme necessário -->
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <div class="row sales-history">
-            <div class="col-md-12">
-                <h2>Histórico de Vendas</h2>
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>Data</th>
-                            <th>Preço de Venda</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>01/01/2024</td>
-                            <td>R$ 5,00</td>
-                        </tr>
-                        <tr>
-                            <td>02/01/2024</td>
-                            <td>R$ 5,20</td>
-                        </tr>
-                        <tr>
-                            <td>03/01/2024</td>
-                            <td>R$ 5,10</td>
-                        </tr>
-                        <!-- Adicione mais linhas conforme necessário -->
-                    </tbody>
-                </table>
-            </div>
+
         </div>
     </div>
-
+</body>
 
 
 {% endblock %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Visualização do Produto</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        .product-img {
-            width: 100%;
-            height: auto;
-            max-height: 400px;
-            object-fit: cover;
-        }
-        .product-info {
-            margin-top: 20px;
-        }
-        .price-history,
-        .sales-history {
-            margin-top: 30px;
-        }
-    </style>
-</head>
-<body>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
-</html>

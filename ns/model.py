@@ -12,13 +12,6 @@ def configure(app):
 
 
 
-class Title(SQLModel, table=True):
-	
-	id: Optional[int] = Field(default=None, primary_key=True)
-	code: int 
-	quantity: str
-	price: float
-	person_id: int
 
 class Person(SQLModel, table=True):
 	id: Optional[int] = Field(default=None, primary_key=True)
@@ -27,6 +20,18 @@ class Person(SQLModel, table=True):
 	tipe_doc:str
 	adress: str
 	contact:str
+	titles:List['Title']=Relationship()
+
+
+class Title(SQLModel, table=True):
+	
+	id: Optional[int] = Field(default=None, primary_key=True)
+	code: int 
+	quantity: str
+	price: float
+	person_id: int = Field(foreign_key='person.id')
+
+
 
 class User(SQLModel, table=True):
 
@@ -107,3 +112,11 @@ def add_person_default( name:str, doc_number:str, doc:str  , adress:str , contac
 		session.commit()
 		session.refresh(person)
 		return person
+
+
+def get_person_id(id:int):
+	with Session(engine) as session:
+		person = session.get(Person , id)
+		
+		return person , person.titles
+

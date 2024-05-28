@@ -47,8 +47,8 @@ def add():
 
 @person.route('/ver/<id>', methods = ['GET','POST'])
 def view(id):
-    
-    return render_template('person/view.html')
+    data=model.get_person_id(id)    
+    return render_template('person/view.html' , data=data)
   
 
 
