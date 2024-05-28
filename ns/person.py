@@ -12,6 +12,7 @@ person = Blueprint('person' , __name__ , url_prefix='/cotistas')
 @person.route('/', methods = ['GET','POST'])
 def index():
 
+
     return "<h3>Legumes Selecionados</h3>"
 
 

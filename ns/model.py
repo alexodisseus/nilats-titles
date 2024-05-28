@@ -125,3 +125,27 @@ def get_person_id(id:int):
 		
 		return person , person.titles
 
+
+
+
+"""
+user def
+"""
+
+def get_login_default(email:str , password:str):
+	with Session(engine) as session:
+		query = select(User) #.join(Question_exam)		
+		
+		query = query.where(User.email == email , User.password == password )
+		
+		data = session.exec(query).first()
+		
+		return data
+
+
+
+def get_login_id(user_id:str):
+	with Session(engine) as session:
+		user = session.get(User , id)
+		
+		return user
