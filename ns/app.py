@@ -1,6 +1,7 @@
 import model
-import titles
+import admin
 import person
+import titles
 
 
 from flask import Flask
@@ -13,9 +14,9 @@ app = Flask(__name__)
 app.config['TITLE'] = "nilatS - Titulos"
 app.secret_key = b'guerra aos senhores'
 
-
-#admin.configure(app)
 #order.configure(app)
+
+admin.configure(app)
 person.configure(app)
 titles.configure(app)
 db.configure(app)
